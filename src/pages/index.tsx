@@ -4,7 +4,12 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const categories = api.category.getCategories.useQuery();
+  let categoryStr = "";
+
+  if (categories.data) {
+    categoryStr = categories.data?.map((cat) => cat.name).join(", ");
+  }
 
   return (
     <>
@@ -42,9 +47,9 @@ const Home: NextPage = () => {
               </div>
             </Link>
           </div>
-          <p className="text-2xl text-white">
-            {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-          </p>
+          {categories.data && (
+            <p className="text-2xl text-white">{categoryStr}</p>
+          )}
         </div>
       </main>
     </>
