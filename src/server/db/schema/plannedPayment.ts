@@ -11,19 +11,13 @@ import {
   paymentTypeEnum,
   plannedPaymentRepeatEnum,
 } from "./enums";
-import { account } from "./account";
-import { category } from "./category";
 
 export const plannedPayment = mysqlTable("planned_payment", {
   id: varchar("id", { length: 255 }).primaryKey(),
   type: paymentTypeEnum.notNull(),
   name: varchar("name", { length: 255 }).notNull(),
-  accountId: varchar("account_id", { length: 255 })
-    .references(() => account.id)
-    .notNull(),
-  categoryId: varchar("category_id", { length: 255 })
-    .references(() => category.id)
-    .notNull(),
+  accountId: varchar("account_id", { length: 255 }).notNull(),
+  categoryId: varchar("category_id", { length: 255 }).notNull(),
   userId: varchar("user_id", { length: 255 }).notNull(),
   confirmation: confirmationTypeEnum.notNull(),
   startDate: timestamp("start_date").notNull(),

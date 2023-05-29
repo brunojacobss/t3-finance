@@ -5,18 +5,12 @@ import {
   varchar,
 } from "drizzle-orm/mysql-core";
 import { currencyEnum, paymentOptionsEnum, paymentTypeEnum } from "./enums";
-import { account } from "./account";
-import { category } from "./category";
 
 export const template = mysqlTable("template", {
   id: varchar("id", { length: 255 }).primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
-  accountId: varchar("account_id", { length: 255 }).references(
-    () => account.id
-  ),
-  categoryId: varchar("category_id", { length: 255 }).references(
-    () => category.id
-  ),
+  accountId: varchar("account_id", { length: 255 }).notNull(),
+  categoryId: varchar("category_id", { length: 255 }).notNull(),
   amount: decimal("amount", { precision: 19, scale: 4 }).notNull(),
   type: paymentTypeEnum.notNull(),
   currency: currencyEnum.notNull(),

@@ -1,8 +1,4 @@
-import {
-  type AnyMySqlColumn,
-  mysqlTable,
-  varchar,
-} from "drizzle-orm/mysql-core";
+import { mysqlTable, varchar } from "drizzle-orm/mysql-core";
 import { categoryNatureEnum } from "./enums";
 
 export const category = mysqlTable("category", {
@@ -10,7 +6,5 @@ export const category = mysqlTable("category", {
   name: varchar("name", { length: 255 }).notNull(),
   nature: categoryNatureEnum.notNull(),
   icon: varchar("icon", { length: 255 }),
-  parentCategoryId: varchar("parent_category_id", { length: 255 }).references(
-    (): AnyMySqlColumn => category.id
-  ),
+  parentCategoryId: varchar("parent_category_id", { length: 255 }),
 });
