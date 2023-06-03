@@ -15,10 +15,6 @@ export const transaction = mysqlTable("transaction", {
   date: timestamp("date").notNull(),
   note: varchar("note", { length: 255 }),
   paymentOptionsEnum: paymentOptionsEnum.notNull(),
-  resultingBalance: decimal("resulting_balance", {
-    precision: 19,
-    scale: 4,
-  }).notNull(),
   createdAt: timestamp("created_at"),
   updatedAt: timestamp("updated_at"),
   userId: varchar("user_id", { length: 255 }).notNull(),
