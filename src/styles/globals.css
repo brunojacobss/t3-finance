@@ -31,6 +31,11 @@
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
+    --emphasis: 101 97% 58%;
+    --emphasis-foreground: 100, 47%, 59%;
+
+    --back: 210, 25%, 97%;
+
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
@@ -63,6 +68,11 @@
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
+
+    --emphasis: 101 97% 58%;
+    --emphasis-foreground: 100 33% 25%;
+
+    --back: 215, 25%, 27%;
 
     --ring: 216 34% 17%;
 

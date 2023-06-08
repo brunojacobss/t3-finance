@@ -1,18 +1,22 @@
 import { useUser } from "@clerk/nextjs";
-import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
+import { Spinner } from "~/components/ui/spinner";
 
-const Home: NextPage = () => {
+const Home = () => {
   const { isSignedIn, isLoaded } = useUser();
 
   if (!isLoaded) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <h1>Loading...</h1>
+        <Spinner size={16} />
       </div>
     );
+  }
+
+  if (isSignedIn) {
+    window.location.href = "/dashboard";
   }
 
   return (

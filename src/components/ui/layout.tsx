@@ -1,9 +1,14 @@
-import type { PropsWithChildren } from "react";
-import { SideBar } from "./sidebar";
+import SideBar from "./sidebar";
 
-export const AppLayout = (props: PropsWithChildren) => (
-  <div className="flex h-screen items-center justify-center bg-background transition-all">
+type Props = {
+  children?: React.ReactNode;
+};
+
+export const AppLayout = (props: Props) => (
+  <div className="flex h-full w-full bg-background transition-all">
     <SideBar />
-    <div className="ml-[18%]">{props.children}</div>
+    <div className="h-full w-full">
+      <div className="h-screen overflow-hidden">{props.children}</div>
+    </div>
   </div>
 );
