@@ -46,3 +46,7 @@ export const plannedPaymentRepeatEnum = mysqlEnum("plannet_payment_repeat", [
   "month",
   "year",
 ]);
+export const budgetStatusEnum = mysqlEnum("budget_status", [
+  "in_limit",
+  "overspent",
+]);

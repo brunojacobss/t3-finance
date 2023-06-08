@@ -1,4 +1,4 @@
-# T3-Finance
+# T3-Finance (Work in Progress)
 
 I wanted to make an app that allows me to track and visualize every detail of my personal finances.
 I'm also doing this as a way to learn the [T3 Stack](https://create.t3.gg/).
