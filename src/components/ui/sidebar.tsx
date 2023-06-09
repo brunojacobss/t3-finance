@@ -132,9 +132,7 @@ const SideBarIconButton = ({
 
   const selectedBackground = selected ? "bg-slate-300 dark:bg-slate-500" : "";
   const selectedIconColor = selected
-    ? theme === "dark"
-      ? "#0f1729"
-      : "#f8fafc"
+    ? primaryDarkModeGreen
     : theme === "dark"
     ? "#E1E7EF"
     : "black";

@@ -5,6 +5,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -13,6 +14,7 @@ import type {
   Payload,
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
+import { primaryDarkModeGreen } from "~/shared/consts";
 
 type ArrayData = {
   date: string;
@@ -30,7 +32,7 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
     const value = payload[0]?.value as string;
     return (
       <div className="rounded-md bg-white p-2 shadow-md dark:bg-slate-500">
-        <span className="text-foreground dark:text-background">{`$${value}k`}</span>
+        <span className="text-[#86c865] dark:text-[#adfa1d]">{`$${value}k`}</span>
         <span>{` - ${label}`}</span>
       </div>
     );
@@ -39,11 +41,7 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   return null;
 };
 
-type ChartProps = {
-  width: number;
-};
-
-export const BalanceChart = ({ width }: ChartProps) => {
+export const BalanceChart = () => {
   const { theme } = useTheme();
 
   const createEntry = (): ArrayData => {
@@ -69,40 +67,40 @@ export const BalanceChart = ({ width }: ChartProps) => {
     }));
 
   return (
-    <AreaChart
-      height={400}
-      width={width / 1.1}
-      data={sortedData}
-      margin={{
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" opacity={"50%"} />
-      <XAxis stroke={theme === "dark" ? "white" : "black"} dataKey="date" />
-      <YAxis
-        domain={[80, 190]}
-        tickCount={10}
-        stroke={theme === "dark" ? "white" : "black"}
-        unit={"k"}
-      />
-      <Tooltip
-        content={({ active, payload, label }) => (
-          <CustomTooltip
-            active={active}
-            payload={payload}
-            label={label as string}
-          />
-        )}
-      />
-      <Area
-        type="monotone"
-        dataKey="value"
-        stroke={theme === "dark" ? "#f8fafc" : "#0f1729"}
-        fill={theme === "dark" ? "#f8fafc" : "#0f1729"}
-      />
-    </AreaChart>
+    <ResponsiveContainer height={400} width={"100%"}>
+      <AreaChart
+        data={sortedData}
+        margin={{
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" opacity={"30%"} />
+        <XAxis stroke={theme === "dark" ? "white" : "black"} dataKey="date" />
+        <YAxis
+          domain={[80, 190]}
+          tickCount={10}
+          stroke={theme === "dark" ? "white" : "black"}
+          unit={"k"}
+        />
+        <Tooltip
+          content={({ active, payload, label }) => (
+            <CustomTooltip
+              active={active}
+              payload={payload}
+              label={label as string}
+            />
+          )}
+        />
+        <Area
+          type="monotone"
+          dataKey="value"
+          fill={primaryDarkModeGreen}
+          stroke={primaryDarkModeGreen}
+        />
+      </AreaChart>
+    </ResponsiveContainer>
   );
 };

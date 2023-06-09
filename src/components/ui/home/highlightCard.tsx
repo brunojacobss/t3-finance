@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { Card, CardContent, CardHeader, CardTitle } from "../card";
 
 const formatCurrency = (amount?: number) => {
   if (!amount) return "$0.00";
@@ -47,20 +48,25 @@ export const HighlightCard = ({
     : "#0f1729";
   const iconBackground = selected ? "bg-primary" : "bg-secondary";
   return (
-    <div
+    <Card
       id={id}
       onClick={() => onClick(id)}
-      className={`flex h-52 w-56 flex-col gap-4 rounded-sm ${selectedBackground} cursor-pointer p-6`}
+      className={`flex w-[100%] flex-col rounded-sm ${selectedBackground} cursor-pointer`}
     >
-      <div
-        className={`flex h-16 w-16 items-center justify-center rounded-full ${iconBackground}`}
-      >
-        <Icon color={iconColor} size={36} />
-      </div>
-      <span className={selectedTitleFont}>{title}</span>
-      <span className={`font-bold ${selectedValueFont} sm:text-2xl`}>
-        {formatCurrency(value)}
-      </span>
-    </div>
+      <CardHeader>
+        <CardTitle
+          className={`flex h-16 w-16 items-center justify-center rounded-full ${iconBackground}`}
+        >
+          <Icon color={iconColor} size={36} />
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-2">
+        <span className={selectedTitleFont}>{title}</span>
+
+        <span className={`font-bold ${selectedValueFont} sm:text-2xl`}>
+          {formatCurrency(value)}
+        </span>
+      </CardContent>
+    </Card>
   );
 };
