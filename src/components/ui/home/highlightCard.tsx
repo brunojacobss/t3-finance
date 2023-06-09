@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
+import { cn } from "~/lib/utils";
 
 const formatCurrency = (amount?: number) => {
   if (!amount) return "$0.00";
@@ -30,12 +31,6 @@ export const HighlightCard = ({
   Icon,
 }: Props) => {
   const { theme } = useTheme();
-  const selectedBackground = selected
-    ? "bg-gray-300 dark:bg-background"
-    : "bg-white dark:bg-slate-500";
-  const selectedValueFont = selected
-    ? "text-black dark:text-white"
-    : "text-black";
   const selectedTitleFont = selected
     ? "text-slate-500"
     : "text-slate-500 dark:text-slate-800";
@@ -46,16 +41,24 @@ export const HighlightCard = ({
     : theme === "dark"
     ? "#f8fafc"
     : "#0f1729";
-  const iconBackground = selected ? "bg-primary" : "bg-secondary";
   return (
     <Card
       id={id}
       onClick={() => onClick(id)}
-      className={`flex w-[100%] flex-col rounded-sm ${selectedBackground} cursor-pointer`}
+      className={cn("flex w-[100%] cursor-pointer flex-col rounded-sm", {
+        "bg-white dark:bg-background": selected,
+        "bg-gray-200 dark:bg-slate-500": !selected,
+      })}
     >
       <CardHeader>
         <CardTitle
-          className={`flex h-16 w-16 items-center justify-center rounded-full ${iconBackground}`}
+          className={cn(
+            "flex h-16 w-16 items-center justify-center rounded-full",
+            {
+              "bg-primary": selected,
+              "bg-secondary": !selected,
+            }
+          )}
         >
           <Icon color={iconColor} size={36} />
         </CardTitle>
@@ -63,9 +66,7 @@ export const HighlightCard = ({
       <CardContent className="flex flex-col gap-2">
         <span className={selectedTitleFont}>{title}</span>
 
-        <span className={`font-bold ${selectedValueFont} sm:text-2xl`}>
-          {formatCurrency(value)}
-        </span>
+        <span className="font-bold sm:text-2xl">{formatCurrency(value)}</span>
       </CardContent>
     </Card>
   );
