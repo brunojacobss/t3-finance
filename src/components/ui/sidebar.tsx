@@ -12,6 +12,8 @@ import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
 import ThemeSwitch from "./themeSwitch";
 import { useTabStore } from "~/store/zustand";
+import { useEffect, useState } from "react";
+import { primaryDarkModeGreen, primaryLightModeGreen } from "~/shared/consts";
 
 const SideBar = () => {
   const { theme } = useTheme();
@@ -116,12 +118,23 @@ const SideBarIconButton = ({
   onClick,
   selected,
 }: SideBarIconButtonProps) => {
+  const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   const selectedBackground = selected ? "bg-slate-300 dark:bg-slate-500" : "";
   const selectedIconColor = selected
     ? theme === "dark"
-      ? "#29F707"
-      : "#86c865"
+      ? "#0f1729"
+      : "#f8fafc"
     : theme === "dark"
     ? "#E1E7EF"
     : "black";
@@ -133,7 +146,7 @@ const SideBarIconButton = ({
       className={`${selectedBackground} w-50 flex cursor-pointer gap-4 rounded-sm p-2  transition-all hover:rounded-md hover:bg-slate-300 dark:hover:bg-slate-500`}
     >
       <Icon color={selectedIconColor} />
-      <p className="dark">{label}</p>
+      <p className={`${selected ? "font-semibold" : ""}`}>{label}</p>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { usePopulateUserCategories } from "~/hooks/usePopulateUserCategories";
 import { useTabStore } from "~/store/zustand";
 import capitalize from "~/helpers/capitalize";
 import Accounts from "~/components/ui/accounts";
-import DashboardHome from "~/components/ui/home";
+import { DashboardHome } from "~/components/ui/home";
 
 const Dashboard = () => {
   const { isLoading } = usePopulateUserCategories();

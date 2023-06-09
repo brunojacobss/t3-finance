@@ -40,12 +40,12 @@ export const HighlightCard = ({
     : "text-slate-500 dark:text-slate-800";
   const iconColor = selected
     ? theme === "dark"
-      ? "#29F707"
-      : "#3e5e2f"
-    : "black";
-  const iconBackground = selected
-    ? "bg-emphasis-foreground"
-    : "bg-back dark:bg-slate-600";
+      ? "#0f1729"
+      : "#f8fafc"
+    : theme === "dark"
+    ? "#f8fafc"
+    : "#0f1729";
+  const iconBackground = selected ? "bg-primary" : "bg-secondary";
   return (
     <div
       id={id}
