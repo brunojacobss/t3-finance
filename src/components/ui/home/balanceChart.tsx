@@ -67,7 +67,7 @@ export const BalanceChart = () => {
     }));
 
   return (
-    <ResponsiveContainer height={400} width={"100%"}>
+    <ResponsiveContainer height="100%">
       <AreaChart
         data={sortedData}
         margin={{
