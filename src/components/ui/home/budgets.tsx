@@ -15,7 +15,7 @@ const generateBudget = () => {
 export const Budgets = () => {
   const arr = Array.from({ length: 8 }, generateBudget);
   return (
-    <Card className="flex h-[100%] w-[100%] flex-col overflow-scroll rounded-sm">
+    <Card className="flex h-[100%] w-[100%] flex-col overflow-auto rounded-sm">
       <CardHeader>
         <CardTitle>
           <h1 className="text-xl font-bold">Budgets</h1>

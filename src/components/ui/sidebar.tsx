@@ -13,7 +13,7 @@ import { useTheme } from "next-themes";
 import ThemeSwitch from "./themeSwitch";
 import { useTabStore } from "~/store/zustand";
 import { useEffect, useState } from "react";
-import { primaryDarkModeGreen, primaryLightModeGreen } from "~/shared/consts";
+import { primaryDarkModeGreen } from "~/shared/consts";
 
 const SideBar = () => {
   const { theme } = useTheme();
@@ -25,7 +25,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="float-left flex h-screen min-w-max flex-col bg-background p-8">
+    <div className="flex h-screen min-w-max flex-col bg-background p-8">
       <h1 className="text-3xl text-foreground">t3-finance</h1>
       <p className="mt-12 text-slate-500">MANAGE</p>
       <div className="mt-4 flex  flex-col gap-8 text-foreground">
