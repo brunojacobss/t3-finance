@@ -8,8 +8,12 @@ type Props = {
 
 export const AppLayout = (props: Props) => {
   const { selectedTab } = useTabStore();
+
   return (
-    <div className="flex h-screen overflow-hidden bg-background transition-all">
+    <div className="flex h-screen flex-col overflow-hidden bg-background transition-all sm:flex-row">
+      <button className="z-90 fixed bottom-10 right-8 flex h-20 w-20 items-center justify-center rounded-full bg-primary text-4xl text-secondary drop-shadow-lg transition-all hover:bg-primary/90">
+        &#43;
+      </button>
       <SideBar />
       <div className="flex w-full flex-col">
         <h1 className="p-12 font-bold sm:text-4xl">

@@ -4,20 +4,7 @@ import { useState } from "react";
 import { BalanceChart } from "./balanceChart";
 import { Card, CardContent, CardHeader, CardTitle } from "../card";
 import { Budgets } from "./budgets";
-import { faker } from "@faker-js/faker";
-import { v4 as uuid } from "uuid";
-
-const generateTransaction = () => {
-  return {
-    id: uuid(),
-    name: faker.word.noun(),
-    amount: faker.finance.amount(),
-    date: faker.date.past(),
-    currency: faker.finance.currencyCode(),
-    account: faker.finance.accountName(),
-    type: faker.finance.transactionType(),
-  };
-};
+import { Transactions } from "./transactions";
 
 export const DashboardHome = () => {
   const [selected, setSelected] = useState<Highlights>("highlight-balance");
@@ -25,8 +12,6 @@ export const DashboardHome = () => {
   const onClick = (newSelected: Highlights) => {
     setSelected(newSelected);
   };
-
-  const txs = Array.from({ length: 10 }, generateTransaction);
 
   return (
     <div>
@@ -74,28 +59,7 @@ export const DashboardHome = () => {
         </div>
       </div>
       <div>
-        <Card className="mt-12 h-[100%] w-[100%] rounded-sm">
-          <CardHeader>
-            <CardTitle>
-              <h1 className="text-xl font-bold">Transactions</h1>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {txs.map(({ id, name, amount, date, currency, account, type }) => (
-              <div key={id}>
-                <div className="flex flex-row justify-between">
-                  <span className="text-md font-bold">{name}</span>
-                  <div className="flex flex-row gap-8">
-                    <span className="text-md font-bold">
-                      {currency} {amount}
-                    </span>
-                    <span className="text-md">{date.toLocaleString()}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        <Transactions />
       </div>
     </div>
   );
